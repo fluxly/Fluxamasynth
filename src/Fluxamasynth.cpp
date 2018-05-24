@@ -11,6 +11,7 @@ Modified 4/2011 R.McGinnis
 Updated 2018 Modern Device
 ------------------------------------------------------- 
 */
+#pragma once
 
 #include <Arduino.h>
 #include "Fluxamasynth.h"
@@ -58,10 +59,12 @@ size_t Fluxamasynth::fluxWrite(byte *buf, int cnt) {
 
 #endif
 
-#if (FS_PLATFORM == FLUXAMASYNTH_FOR_FEATHER) 
+#if (FS_PLATFORM == FLUXAMASYNTH_FOR_FEATHER)  || (FS_PLATFORM == FLUXAMASYNTH_FOR_FEATHER_M0)
 
 Fluxamasynth::Fluxamasynth() {  
-    Serial1.begin(31250);
+#if (FS_PLATFORM == FLUXAMASYNTH_FOR_FEATHER)
+	Serial1.begin(31250);
+#endif
 }
 
 size_t Fluxamasynth::fluxWrite(byte c) {
@@ -176,4 +179,10 @@ void Fluxamasynth::setChorus(byte channel, byte program, byte level, byte feedba
         byte command[11] = { 0xf0, 0x41, byte(0x00), 0x42, 0x12, 0x40, 0x01, 0x3C, (chorusDelay & 0x7f), 0xf7 };
 	this->fluxWrite(command, 11);
     }
+}
+
+void Fluxamasynth::pan(int channel, int value) {
+  byte command[3] = {
+    (0xb0 | (channel & 0x0f)), 0x0A, (value)   };
+  this->fluxWrite(command, 3);
 }

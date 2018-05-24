@@ -11,7 +11,7 @@ Modified 4/2011 R.McGinnis
 Updated 2018 Modern Device
 ------------------------------------------------------- 
 */
-
+#pragma once
 
 #include <Arduino.h>
 #include "PgmChange.h"
@@ -26,7 +26,7 @@ Updated 2018 Modern Device
   #elif defined(ARDUINO_AVR_FEATHER32U4)
     #define FS_PLATFORM FLUXAMASYNTH_FOR_FEATHER
 #elif defined(ARDUINO_SAMD_FEATHER_M0_EXPRESS) || defined(ARDUINO_SAMD_FEATHER_M0)
-    #define FS_PLATFORM FLUXAMASYNTH_FOR_FEATHER
+    #define FS_PLATFORM FLUXAMASYNTH_FOR_FEATHER_M0
   #elif defined(ARDUINO)
     #define FS_PLATFORM FLUXAMASYNTH_SHIELD
   #elif defined(RASPBERRY_PI)
@@ -40,8 +40,6 @@ Updated 2018 Modern Device
 #if (FS_PLATFORM == FLUXAMASYNTH_SHIELD)
 #include <SoftwareSerial.h>
 #endif
-
-#pragma once
 
 class Fluxamasynth
 {
@@ -69,4 +67,5 @@ class Fluxamasynth
     void setMasterVolume(byte level);
     void setReverb(byte channel, byte program, byte level, byte delayFeedback);
     void setChorus(byte channel, byte program, byte level, byte feedback, byte chorusDelay);
+	void pan(int channel, int value);
 };
