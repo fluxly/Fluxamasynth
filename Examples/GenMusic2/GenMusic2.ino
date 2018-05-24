@@ -1,4 +1,8 @@
-//Exploring the upper range of the instrument
+/*
+* GenMusic2
+* Exploring the upper range of the instrument
+* moderndevice.com
+*/
 
 #include <Fluxamasynth.h>
 #include <PgmChange.h>
@@ -9,16 +13,16 @@ int count2 = 0;
 int s = 120;
 
 void setup() {
-
+  // Serial1.begin(31250);             // Uncomment if using a Feather M0 board
+  delay(20);
   synth.midiReset();
-    synth.setMasterVolume(50);
+  synth.setMasterVolume(50);
   int instrument = 2;
   randomSeed(millis()+analogRead(1));
   for (int i=0; i<4; i++) {
-    synth.programChange(0, i, instrument);
-    synth.setReverb(i, 1, 127, 25);
-    
-   pan(i, 127/(i+1));
+      synth.programChange(0, i, instrument);
+      synth.setReverb(i, 1, 127, 25);
+      synth.pan(i, 127/(i+1));
   }
 }
 
@@ -54,11 +58,4 @@ for (int i=n; i<n+8; i++) {
     synth.noteOff(3, i-5);
     synth.noteOff(4, i+2);
   }
-}
-
-void pan(int channel, int value) {
-  // TODO: Add this to library
-  byte command[3] = { 
-    (0xb0 | (channel & 0x0f)), 0x0A, (value)   };
-  synth.fluxWrite(command, 3);
 }

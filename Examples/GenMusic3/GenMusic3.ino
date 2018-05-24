@@ -1,10 +1,15 @@
+/*
+* GenMusic1
+* A variation on GenMusic1
+* moderndevice.com
+*/
+
 #include <Fluxamasynth.h>
 #include <PgmChange.h>
 
 Fluxamasynth synth = Fluxamasynth();
 
 #define numInstruments 4
-
 
 byte parts[4];
 int measures[16];
@@ -31,13 +36,16 @@ int timesig = 16;
 int instrument[numInstruments] = {41, 41, 41, 41};
 
 void setup() {
+  // Serial1.begin(31250);             // Uncomment if using a Feather M0 board
+  delay(20);
+  synth.midiReset();
   randomSeed(millis()+analogRead(0));
   Serial.begin(9600);
   chooseParts();
   synth.setMasterVolume(100);
   for (int i=0; i<numInstruments; i++) {
     synth.programChange(0, i, instrument[i]);
-    pan(i,127/numInstruments*i);
+    synth.pan(i,127/numInstruments*i);
     //synth.setChannelVolume(i, volume[i]);
     synth.setReverb(i, 3, 127, 25);
   }
@@ -213,11 +221,4 @@ void loop() {
   delay(500);
   digitalWrite(12, LOW);
   pinMode(12, INPUT);
-}
-
-void pan(int channel, int value) {
-  // TODO: Add this to library
-  byte command[3] = {
-    (0xb0 | (channel & 0x0f)), 0x0A, (value)   };
-  synth.fluxWrite(command, 3);
 }

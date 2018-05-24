@@ -1,6 +1,7 @@
-/* FluxamasynthBendingNotes.pde
-* Demonstrates note bending on the Modern Device Fluxamasynth Shield
-* ModernDevice.com
+/* 
+*  FluxamasynthBendingNotes
+*  Demonstrates pitch bending on the Modern Device Fluxamasynth Shield
+*  modernDevice.com/fluxamasynth
 */
 
 #include "Fluxamasynth.h"
@@ -11,8 +12,8 @@ int i = 512;                   // middle of pitch bend range
 
 void setup()
 {
-  Serial.begin(31250);
-
+  // Serial1.begin(31250);     // Uncomment if using a Feather M0 board
+  synth.midiReset();
   synth.programChange(127, 0, 91);
   synth.pitchBendRange(0, 4);  //double the pitch bend sensitivity (4 semitones)
 

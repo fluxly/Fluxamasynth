@@ -1,3 +1,9 @@
+/*
+* GenMusic1
+* An example of using the Fluxamasynth for generative music
+* moderndevice.com
+*/
+
 #include <Fluxamasynth.h>
 #include <PgmChange.h>
 
@@ -21,6 +27,8 @@ int tempo=30;
 int instrument[numInstruments] = {13, 13, 13, 13};
 
 void setup() {
+  // Serial1.begin(31250);             // Uncomment if using a Feather M0 board
+  synth.midiReset();
   randomSeed(millis()+analogRead(0));
   Serial.begin(9600);
   chooseParts();
@@ -28,7 +36,6 @@ void setup() {
   for (int i=0; i<numInstruments; i++) {
     synth.programChange(0, i, instrument[i]);
     synth.pan(i,127/numInstruments*i);
-    //synth.setChannelVolume(i, volume[i]);
     synth.setReverb(i, 3, 127, 25);
   }
   synth.setReverb(9,5,255,100);   //Plate reverb

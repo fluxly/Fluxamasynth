@@ -1,10 +1,10 @@
-/* FluxamasynthDrumPatternPlayer.pde
+/* 
+* FluxamasynthDrumPatternPlayer
 * A drum machine for the Modern Device Fluxamasynth Shield
-* ModernDevice.com
+* modernDevice.com/fluxamasynth
 *
 * By Michel Gutlich 26-2-2011 
 * A sensor signal on analog input 0 gives some tempo dynamics
-* Contact at iching@xs4al.nl
 */
 
 #include "Fluxamasynth.h"
@@ -28,8 +28,6 @@ int hho [] = {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,127,  0}; //Hi
 int hhc [] = {127, 40, 80, 40,127, 40, 80, 40,127, 40, 80, 40,127,  0,  0}; //Hihat Close
 int hhp [] = {  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,127}; //Hihat Pedal
 
-
-
 // * Some basic settings */
 int channel = 9;              // MIDI channel number
 int tempo = 120;              // Start tempo
@@ -38,7 +36,7 @@ int tempo = 120;              // Start tempo
 int tickNo;                   // Our tick number variable
 
 void setup() {
-  Serial.begin(31250);		//  Set MIDI baud rate:
+  // Serial1.begin(31250);    // Uncomment if using a Feather M0 board
 
   synth.midiReset();            // Do a complete MIDI reset
 

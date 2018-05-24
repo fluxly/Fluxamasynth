@@ -145,7 +145,9 @@ void setNextNote(int j) {
 }
 
 void setup() {
-  // The tempo is determined by a potentiometer on Analog 0. 
+  // Serial1.begin(31250);             // Uncomment if using a Feather M0 board
+  
+  // The tempo is determined by a potentiometer on Analog 1 
   pinMode(A0, OUTPUT);
   pinMode(A2, OUTPUT);
   digitalWrite(A0, LOW);
