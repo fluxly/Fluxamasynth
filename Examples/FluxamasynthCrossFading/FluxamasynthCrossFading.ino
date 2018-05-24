@@ -1,6 +1,7 @@
-/* FluxamasynthCrossFading.pde
+/* 
+* FluxamasynthCrossFading
 * Demonstrates cross fading on the Modern Device Fluxamasynth Shield
-* ModernDevice.com
+* modernDevice.com/fluxamasynth
 */
 
 #include "Fluxamasynth.h"
@@ -17,6 +18,8 @@ int dir = 1;                           // direction to step in: 1 = up, -1 = dow
 
 void setup() {
 
+  // Serial1.begin(31250);             // Uncomment if using a Feather M0 board
+  synth.midiReset();
   synth.programChange(0, 0, 90);       // give our two channels different voices
   synth.programChange(0, 1, 89);
 
