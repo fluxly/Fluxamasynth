@@ -12,7 +12,7 @@ Updated 2018 Modern Device
 ------------------------------------------------------- 
 */
 
-#include "Arduino.h"
+#include <Arduino.h>
 #include "Fluxamasynth.h"
 
 #if (FS_PLATFORM == FLUXAMASYNTH_SHIELD)
@@ -74,6 +74,7 @@ size_t Fluxamasynth::fluxWrite(byte *buf, int cnt) {
     }
 }
 #endif
+
 
 void Fluxamasynth::noteOn(byte channel, byte pitch, byte velocity) {
     byte command[3] = { 0x90 | (channel & 0x0f), pitch, velocity };

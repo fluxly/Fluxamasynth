@@ -13,7 +13,7 @@ Updated 2018 Modern Device
 */
 
 
-#include "Arduino.h"
+#include <Arduino.h>
 #include "PgmChange.h"
 
 #define FLUXAMASYNTH_ESP32       1
@@ -23,7 +23,9 @@ Updated 2018 Modern Device
 
 #if defined(ESP_PLATFORM)
     #define FS_PLATFORM FLUXAMASYNTH_ESP32
-  #elif defined(ARDUINO_AVR_FEATHER32U4) || defined(ARDUINO_SAMD_FEATHER_M0)
+  #elif defined(ARDUINO_AVR_FEATHER32U4)
+    #define FS_PLATFORM FLUXAMASYNTH_FOR_FEATHER
+#elif defined(ARDUINO_SAMD_FEATHER_M0_EXPRESS) || defined(ARDUINO_SAMD_FEATHER_M0)
     #define FS_PLATFORM FLUXAMASYNTH_FOR_FEATHER
   #elif defined(ARDUINO)
     #define FS_PLATFORM FLUXAMASYNTH_SHIELD
