@@ -68,4 +68,14 @@ class Fluxamasynth
     void setReverb(byte channel, byte program, byte level, byte delayFeedback);
     void setChorus(byte channel, byte program, byte level, byte feedback, byte chorusDelay);
 	void pan(int channel, int value);
+    void setEQ(byte channel, byte lowBand, byte medLowBand, byte medHighBand, byte highBand,
+               byte lowFreq, byte medLowFreq, byte medHighFreq, byte highFreq);
+    void setTuning(byte channel, byte coarse, byte fine);
+    void setVibrate(byte channel, byte rate, byte depth, byte mod);
+    void setTVF(byte channel, byte cutoff, byte resonance);
+    void setEnvelope(byte channel, byte attack, byte decay, byte release);
+    void setScaleTuning(byte channel, byte v1, byte v2, byte v3, byte v4, byte v5, byte v6,
+                        byte v7, byte v8, byte v9, byte v10, byte v11, byte v12);
+    void setModWheel(byte channel, byte pitch, byte tvtCutoff, byte amplitude, byte rate, byte pitchDepth, byte tvfDepth, byte tvaDepth);
+    
 };
