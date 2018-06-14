@@ -199,20 +199,25 @@ void Fluxamasynth::setEQ(byte channel, byte lowBand, byte medLowBand, byte medHi
     //BnH 63H 37H 62H 0BH 06H vv   high freq
     byte command[7] = {0xb0 | (channel & 0x0f), 0x63, 0x37, 0x62, 0x00, 0x06, (lowBand & 0x7f)};
     this->fluxWrite(command, 7);
-    command[6] = (lowBand & 0x7f);
-    this->fluxWrite(command, 7);
+    command[4] = 0x01;
     command[6] = (medLowBand & 0x7f);
     this->fluxWrite(command, 7);
+    command[4] = 0x02;
     command[6] = (medHighBand & 0x7f);
     this->fluxWrite(command, 7);
+    command[4] = 0x03;
     command[6] = (highBand & 0x7f);
     this->fluxWrite(command, 7);
+    command[4] = 0x08;
     command[6] = (lowFreq & 0x7f);
     this->fluxWrite(command, 7);
+    command[4] = 0x09;
     command[6] = (medLowFreq & 0x7f);
     this->fluxWrite(command, 7);
+    command[4] = 0x0A;
     command[6] = (medHighFreq & 0x7f);
     this->fluxWrite(command, 7);
+    command[4] = 0x0B;
     command[6] = (highFreq & 0x7f);
     this->fluxWrite(command, 7);
 }
