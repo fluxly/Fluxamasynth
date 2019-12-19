@@ -77,5 +77,6 @@ class Fluxamasynth
     void setScaleTuning(byte channel, byte v1, byte v2, byte v3, byte v4, byte v5, byte v6,
                         byte v7, byte v8, byte v9, byte v10, byte v11, byte v12);
     void setModWheel(byte channel, byte pitch, byte tvtCutoff, byte amplitude, byte rate, byte pitchDepth, byte tvfDepth, byte tvaDepth);
+	void allDrums();
     
 };

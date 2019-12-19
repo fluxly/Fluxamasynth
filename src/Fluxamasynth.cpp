@@ -304,4 +304,15 @@ void Fluxamasynth::setModWheel(byte channel, byte pitch, byte tvtCutoff, byte am
     this->fluxWrite(command, 11);
 }
 
+void Fluxamasynth::allDrums() {
+    //F0h 41h 00h 42h 12h 40h 1ph 15h vv xx F7h
+    byte command[21] = { 0xf0, 0x41, 0x00, 0x42, 0x12, 0x40, 0x10, 0x15, 0x01, 0x00, 0xf7 };
+    this->fluxWrite(command, 11);
+	for (byte i=1; i<15; i++) {
+	  command[6] = i;
+	  this->fluxWrite(command, 11);
+    } 
+}
+
+
 
